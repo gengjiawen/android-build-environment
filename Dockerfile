@@ -68,7 +68,6 @@ RUN echo y | /usr/local/android-sdk/tools/android update sdk --filter "${ANDROID
 # Environment variables
 ENV ANDROID_HOME /usr/local/android-sdk
 ENV ANDROID_SDK_HOME $ANDROID_HOME
-ENV ANDROID_NDK_HOME /usr/local/android-ndk
 ENV PATH $PATH:$ANDROID_SDK_HOME/tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/platform-tools
 ENV PATH $PATH:$ANDROID_SDK_HOME/build-tools/23.0.3
@@ -96,8 +95,8 @@ RUN id $RUN_USER || adduser --uid "$RUN_UID" \
     --disabled-password "$RUN_USER"
 
 # Fix permissions
-RUN chown -R $RUN_USER:$RUN_USER $ANDROID_HOME $ANDROID_SDK_HOME $ANDROID_NDK_HOME
-RUN chmod -R a+rx $ANDROID_HOME $ANDROID_SDK_HOME $ANDROID_NDK_HOME
+RUN chown -R $RUN_USER:$RUN_USER $ANDROID_HOME $ANDROID_SDK_HOME
+RUN chmod -R a+rx $ANDROID_HOME $ANDROID_SDK_HOME
 
 # Creating project directories prepared for build when running
 # `docker run`
