@@ -84,7 +84,7 @@ ENV GRADLE_OPTS "-XX:+UseG1GC -XX:MaxGCPauseMillis=1000"
 RUN apt-get clean
 
 # Add build user account, values are set to default below
-ENV RUN_USER mobileci
+ENV RUN_USER gengjiawen
 ENV RUN_UID 5089
 
 RUN id $RUN_USER || adduser --uid "$RUN_UID" \
@@ -101,7 +101,7 @@ RUN chmod -R a+rx $ANDROID_HOME $ANDROID_SDK_HOME
 # `docker run`
 ENV PROJECT /project
 RUN mkdir $PROJECT
-RUN chown -R $RUN_USER:$RUN_USER $PROJECT
+RUN chmod -R a+w $PROJECT
 WORKDIR $PROJECT
 
 USER $RUN_USER
